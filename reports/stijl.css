@@ -55,7 +55,7 @@ li:last-child {
 }
 
 .online {
-  background-color: #a3d9a5;
+  background-color: #304b3b;
   color: #ffffff;
 }
 
@@ -63,25 +63,6 @@ li:last-child {
   background-color: #ff6962;
   color: #ffffff;
 }
-
-li:hover {
-  transform: scale(1.02);
-  cursor: pointer;
-}
-
-::-webkit-scrollbar {
-  width: 0.8rem;
-}
-
-::-webkit-scrollbar-track {
-  background: #1e1e1e;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: #555;
-  border-radius: 1rem;
-  border: 0.2rem solid #1e1e1e;
-} 
 
 @media (max-width: 600px) {
   h1 {
