@@ -1,53 +1,93 @@
-/* drie basisstijlregels om je te helpen */
+/* Basisstijlregels */
 :root {
-  font-size: 100%; /* zet je dit op 62.5%, dan is elke rem 10px waard, anders 16px */
+  font-size: 62.5%; /* 1rem = 10px */
 }
+
 html {
   box-sizing: border-box;
+  background-color: #121212;
+  color: #e0e0e0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
 }
-*,
-*:before,
-*:after {
+
+*, *::before, *::after {
   box-sizing: inherit;
-}
-
-/* hier komt jouw css */
-
-html {
-  background-color: black;
-  color: white;
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  min-height: 100vh;
 }
 
 h1 {
   font-size: 3rem;
-  text-align: center;
-  padding: 1rem;
-  border-bottom: solid white 0.1rem;
-}
-
-div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-bottom: 2rem;
+  color: #ffffff;
+  border-bottom: 0.2rem solid #ffffff;
+  padding-bottom: 1rem;
 }
 
 ul {
-  padding: 0rem 1rem;
-  padding-top: 1rem;
-  text-align: center;
-  display: inline-block;
+  list-style: none;
+  width: 100%;
+  max-width: 60rem;
+  border: 0.1rem solid #333;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
 }
 
 li {
+  padding: 1.5rem;
+  font-size: 1.6rem;
+  border-bottom: 0.1rem solid #333;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+li:last-child {
+  border-bottom: none;
 }
 
 .online {
-  background-color: green;
+  background-color: #a3d9a5;
+  color: #ffffff;
 }
+
 .offline {
-  background-color: red;
+  background-color: #ff6962;
+  color: #ffffff;
 }
+
+li:hover {
+  transform: scale(1.02);
+  cursor: pointer;
+}
+
+::-webkit-scrollbar {
+  width: 0.8rem;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e1e1e;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 1rem;
+  border: 0.2rem solid #1e1e1e;
+} 
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+  li {
+    font-size: 1.4rem;
+  }
+} 

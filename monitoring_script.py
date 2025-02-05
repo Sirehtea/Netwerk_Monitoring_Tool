@@ -27,11 +27,7 @@ servers_to_check = load_servers_from_json()
 
 def ping_server(server):
     response_time = ping(server)
-    status = {"timestamp": time.ctime(), "response_time": response_time} if response_time is not None else {"timestamp": time.ctime(), "response_time": None}
-    if server in servers_to_check:
-        servers_to_check[server]["checks"].append(status)
-        save_servers_to_json(servers_to_check)
-        update_monitoring_log(server, "online" if response_time is not None else "offline")
+    update_monitoring_log(server, "online" if response_time is not None else "offline")
 
 def add_server(server):
     servers_to_check[server] = {"checks": []}
