@@ -7,6 +7,15 @@ import os
 import threading
 from rich import print
 
+if os.path.exists('servers.json'):
+    with open('servers.json', 'r') as file:
+        servers_to_check = json.load(file)
+else:
+    # If it doesn't exist, create an empty list in the file
+    with open('servers.json', 'w') as file:
+        json.dump([], file)  # Dump an empty list to the file
+    print("created")
+
 if not os.path.exists("reports"):
     os.makedirs("reports")
 
@@ -17,8 +26,6 @@ def save_servers_to_json(servers):
 def load_servers_from_json():
     with open("servers.json", "r") as file:
         return json.load(file)
-
-servers_to_check = load_servers_from_json()
 
 def ping_server(server):
     response_time = ping(server)
@@ -90,6 +97,7 @@ def generate_html_report():
 
 
 def start_monitoring(interval):
+    servers_to_check = load_servers_from_json()
     global monitoring_active
 
     def monitoring_task():
@@ -98,12 +106,12 @@ def start_monitoring(interval):
                 ping_server(server)
                 os.system('cls' if os.name == 'nt' else 'clear')
                 print(f"\n[bold green]Monitoring is actief. Volgende controle over [bold red]{interval}[/bold red] seconden...[/bold green]\n", end="", flush=True)
-                for _ in range(interval):
-                    time.sleep(1)
-                    print(".", end="", flush=True)
                 print()
                 generate_html_report()
-            
+            for _ in range(interval):
+                time.sleep(1)
+                print(".", end="", flush=True)   
+           
     monitoring_active = True
     monitoring_thread = threading.Thread(target=monitoring_task)
     monitoring_thread.daemon = True
